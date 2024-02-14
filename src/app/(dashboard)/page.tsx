@@ -1,47 +1,39 @@
-'use client'
+"use client";
 
-import { postsData } from '../../data/post';
-import Link from 'next/link';
-import { useState } from 'react';
+import { Post, postsData } from "../../data/post";
+import Link from "next/link";
+import { useState } from "react";
+import SearchBar from "@/components/SearchBar/SearchBar";
+import Button from "@/components/Button/Button";
+import styles from "./page.module.css";
+import ManagePostCard from "@/components/ManagePostCard/ManagePostCard";
 
 export default function Home() {
   const [posts, setPosts] = useState(postsData);
 
-  const handleDelete = (id: string) => {
-    const confirmDelete = window.confirm('Are you sure you want to delete this post?');
-    if (confirmDelete) {
-      console.log('delete', id)
-      //TO DO: delete post with id from db
-      setPosts(posts.filter(post => post.id !== id));
-    }
-  };
+
   return (
     <>
-      <div>
-        <form>
-          <input type="text" placeholder="Search" />
-        </form>
+      <div className={styles.dashboard}>
+        <div className={styles.searchContainer}>
+          <SearchBar />
 
-        <Link href='/create'>
-          <button>
-            Create Post
-          </button>
-        </Link>
+          <Link href="/create">
+            <Button buttonText="Create Post" />
+          </Link>
+        </div>
 
+        <div>
+          <ul>
+            {posts.map((post: Post) => (
+              <li key={post.id}>
+                <ManagePostCard post={post} posts={posts} setPosts={setPosts} />
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id}>
-            <div>
-              {post.title}
-              <Link href={`/edit/${post.id}`}>
-                <button>Edit</button>
-              </Link>
-              <button onClick={() => handleDelete(post.id)}>Delete</button>
-            </div>
-          </li>
-        ))}
-      </ul>
     </>
-  )
+  );
 }
+
