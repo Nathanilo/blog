@@ -1,0 +1,18 @@
+.navbar {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 15px;
+  }
+  
+  .navbar a:last-child {
+    margin-right: 0;
+  }
