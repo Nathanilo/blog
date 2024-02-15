@@ -1,7 +1,11 @@
-function EditPage({params}) {
+"use client";
+
+import Form from "@/components/Form/Form";
+
+function EditPage() {
   return (
     <div>
-      <h1>Edit Page {params.id}</h1>
+      <Form buttonText="Save Post" onSubmit={() => console.log("submitted")} />
     </div>
   );
 }
