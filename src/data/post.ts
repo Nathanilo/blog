@@ -8,7 +8,7 @@ export interface Post {
   author: string;
 }
 
-export let postsData: Post[] = [
+export const postsData: Post[] = [
   {
     id: uuidv4(),
     title: "Navigating the Decentralized Future: A Guide to Web3 Technologies ",
