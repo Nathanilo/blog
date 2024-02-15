@@ -1,0 +1,18 @@
+.viewSearchContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3rem;
+  margin-left: 1rem;
+}
+
+
+.postslist {
+  display: flex;
+}
+
+.listItem {
+  width: 45%;;
+  list-style: none;
+}
+

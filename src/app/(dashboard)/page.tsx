@@ -10,13 +10,13 @@ import ManagePostCard from "@/components/ManagePostCard/ManagePostCard";
 
 export default function Home() {
   const [posts, setPosts] = useState(postsData);
-
+  const [filteredPosts, setFilteredPosts] = useState(postsData);
 
   return (
     <>
       <div className={styles.dashboard}>
         <div className={styles.searchContainer}>
-          <SearchBar />
+          <SearchBar posts={postsData} setFilteredPosts={setFilteredPosts} />
 
           <Link href="/create">
             <Button buttonText="Create Post" />
@@ -25,9 +25,13 @@ export default function Home() {
 
         <div>
           <ul>
-            {posts.map((post: Post) => (
+            {filteredPosts.map((post: Post) => (
               <li key={post.id}>
-                <ManagePostCard post={post} posts={posts} setPosts={setPosts} />
+                <ManagePostCard
+                  post={post}
+                  posts={filteredPosts}
+                  setPosts={setFilteredPosts}
+                />
               </li>
             ))}
           </ul>
@@ -36,4 +40,3 @@ export default function Home() {
     </>
   );
 }
-
