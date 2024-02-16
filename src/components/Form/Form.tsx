@@ -1,24 +1,31 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, ReactNode } from "react";
 import Button from "../Button/Button";
 import styles from "./Form.module.css";
 
+
 interface FormProps {
   buttonText: string;
-  onSubmit: (title: string, content: string) => void;
 }
 
-const Form: React.FC<FormProps> = ({ onSubmit, buttonText }) => {
+const Form: React.FC<FormProps> = ({ buttonText }): ReactNode => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(title, content);
+    await fetch("http://localhost:3000/api/post", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title, content }),
+    });
     setTitle("");
     setContent("");
-    console.log("title:", title, "content:", content, "submitted!");
+
   };
 
   return (

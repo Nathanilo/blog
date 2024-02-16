@@ -1,21 +1,39 @@
 "use client";
-import Link from "next/link";
 
-import { postsData } from "@/data/post";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "@/components/Button/Button";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import PostCard from "@/components/PostCard/PostCard";
 import styles from "./Page.module.css";
 
 function PostPage() {
-  const [posts, setPosts] = useState(postsData);
+  const [posts, setPosts] = useState([]);
   const [ListView, setListView] = useState(true);
-  const [filteredPosts, setFilteredPosts] = useState(postsData);
+  const [filteredPosts, setFilteredPosts] = useState([]);
 
   const handleClick = () => {
     setListView((prev) => (prev === true ? false : true));
   };
+
+ useEffect(() => {
+   const fetchData = async () => {
+     try {
+       const response = await fetch("http://localhost:3000/api/post");
+       if (!response.ok) {
+         throw new Error("Network response was not ok");
+       }
+
+       const data = await response.json();
+       setPosts(data);
+       setFilteredPosts(data);
+     } catch (error: any) {
+       // setError("Error fetching data: " + error.message);
+       console.log("error fetching data: ", error.message);
+     }
+   };
+
+   fetchData();
+ }, []);
 
   return (
     <>
@@ -27,7 +45,7 @@ function PostPage() {
           />
           {/* <Button buttonText="Grid view" /> */}
         </div>
-        <SearchBar posts={postsData} setFilteredPosts={setFilteredPosts} />
+        <SearchBar posts={posts} setFilteredPosts={setFilteredPosts} />
       </div>
       <div>
         {ListView ? (

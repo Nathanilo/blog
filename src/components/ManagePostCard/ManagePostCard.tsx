@@ -1,37 +1,37 @@
 import Link from "next/link";
 import Button from "../Button/Button";
 import styles from "./ManagePostCard.module.css";
-import { Post } from "@/data/post";
+import { Post } from "@prisma/client";
 
 interface PostProps {
-  post: {
-    title: string;
-    id: string;
-    content: string;
-    timestamp: string;
-    author: string;
-  };
-  posts: Array<{ title: string; id: string }>;
+  post: Post;
+  posts: Post[];
   setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
 }
 
-
 const ManagePostCard: React.FC<PostProps> = ({ post, posts, setPosts }) => {
-const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     const confirmDelete = window.confirm(
-        "Are you sure you want to delete this post?"
+      "Are you sure you want to delete this post?"
     );
     if (confirmDelete) {
-        console.log("delete", id);
-        //TO DO: delete post with id from db
-        setPosts(posts.filter((post) => post.id !== id) as Post[]);
+      console.log("delete", id);
+
+      await fetch("http://localhost:3000/api/post", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      });
+      setPosts(posts.filter((post) => post.id !== id) as Post[]);
     }
-};
+  };
   return (
     <div className={styles.postContainer}>
       <p>{post.title}</p>
       <div>
-        <Link href={`/edit/${post.id}`}>
+        <Link href={`/edit/?id=${post.id}`}>
           <Button buttonText="Edit" />
         </Link>
         <Button buttonText="Delete" handleClick={() => handleDelete(post.id)} />

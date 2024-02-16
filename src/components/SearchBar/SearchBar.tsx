@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./SearchBar.module.css";
-import { Post } from "@/data/post";
+import { Post } from "@prisma/client";
+
 
 
 interface SearchBarProps {
