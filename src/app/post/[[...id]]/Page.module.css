@@ -7,6 +7,9 @@
 .viewSearchContainer button {
   margin-right: 1rem;
 }
+.defaultList{
+  padding-bottom: 4rem;
+}
 .defaultList li {
   cursor: pointer;
 }
@@ -16,6 +19,7 @@
 }
 .GridList {
   display: flex;
+  padding-bottom: 4rem;
 }
 .GridList a {
   width: 45%;

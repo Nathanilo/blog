@@ -23,7 +23,7 @@ BlogVerse is a web app for managing blogs. It was created for the Elevate Apps i
 
 Blog wireframes are available [here](https://excalidraw.com/#json=WvtTsbF-edKN6wOTcMTCU,SuRpTVFcRjr8HMjBCAGnpg)
 
-Visit Live web app at https://blog-ge2rn5f4o-nathaniel-odions-projects.vercel.app
+Visit Live web app at https://blog-f5aje1mq7-nathaniel-odions-projects.vercel.app
 
 
 ## Features Implemented on BlogVerse V1
