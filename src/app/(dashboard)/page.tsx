@@ -14,8 +14,11 @@ export default function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
+
       try {
-        const response = await fetch("http://localhost:3000/api/post");
+         const baseUrl = window.location.protocol + "//" + window.location.host;
+         const apiUrl = `${baseUrl}/api/post`;
+        const response = await fetch(apiUrl);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }

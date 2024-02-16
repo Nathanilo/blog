@@ -11,8 +11,9 @@ export async function POST(request: Request) {
   await prisma.post.create({
     data: { ...res, author: "anonymous" },
   });
-
-  redirect("http://localhost:3000/");
+const baseUrl = window.location.protocol + "//" + window.location.host;
+const apiUrl = `${baseUrl}/`;
+  redirect(apiUrl);
 }
 
 export async function DELETE(request: Request) {

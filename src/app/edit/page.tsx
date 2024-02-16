@@ -17,7 +17,9 @@ function EditPage() {
 
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/post/${id}`);
+        const baseUrl = window.location.protocol + "//" + window.location.host;
+        const apiUrl = `${baseUrl}/api/post/${id}`;
+        const response = await fetch(apiUrl);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -38,7 +40,10 @@ function EditPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const payload = { ...post, title, content };
-    await fetch(`http://localhost:3000/api/post/${post.id}`, {
+
+    const baseUrl = window.location.protocol + "//" + window.location.host;
+    const apiUrl = `${baseUrl}/api/post/${post.id}`;
+    await fetch(apiUrl, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

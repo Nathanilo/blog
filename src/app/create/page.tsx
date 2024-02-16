@@ -8,8 +8,11 @@ function CreatePage() {
   const [content, setContent] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
+    const baseUrl = window.location.protocol + "//" + window.location.host;
+    const apiUrl = `${baseUrl}/api/post`;
+
     e.preventDefault();
-    await fetch("http://localhost:3000/api/post", {
+    await fetch(apiUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
