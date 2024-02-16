@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Button from "@/components/Button/Button";
-import styles from "./page.module.css";
+import styles from "./Page.module.css";
 import { Post } from "@prisma/client";
 
 function EditPage() {
