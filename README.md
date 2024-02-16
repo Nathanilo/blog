@@ -12,6 +12,8 @@ Blogverse is a web app for managing blogs. It was created for the Elevate Apps i
 
 ### Local Environment
 
+- Rename the .env.example to .env
+- Modify database connection string to include the correct parameters
 - Install app dependencies by executing `yarn install`
 - Start the app by executing `yarn run dev`
 - The app should be accessible at localhost:3000/
@@ -19,3 +21,5 @@ Blogverse is a web app for managing blogs. It was created for the Elevate Apps i
 ## Design
 
 Blog wireframes are available [here](https://excalidraw.com/#json=WvtTsbF-edKN6wOTcMTCU,SuRpTVFcRjr8HMjBCAGnpg)
+
+Visit Live web app at https://blog-fyztx1ebf-nathaniel-odions-projects.vercel.app

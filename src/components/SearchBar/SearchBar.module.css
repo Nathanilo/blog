@@ -1,10 +1,18 @@
+/* Your existing styles for larger screens */
 .searchbar {
   height: 48px;
-  width: 500px;
-  padding: 0 1rem;
+  width: 400px;
+  padding: 1rem 0 1rem 1rem;
   font-size: 1.1rem;
   margin-right: 2rem;
   border-radius: 0.3rem;
   border: none;
   border: 1px solid #343a40;
+}
+
+@media (max-width: 600px) {
+  .searchbar {
+    width: 100%;
+    margin: 0 -1rem;
+  }
 }

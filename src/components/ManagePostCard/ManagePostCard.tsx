@@ -15,7 +15,6 @@ const ManagePostCard: React.FC<PostProps> = ({ post, posts, setPosts }) => {
       "Are you sure you want to delete this post?"
     );
     if (confirmDelete) {
-      console.log("delete", id);
       const baseUrl = window.location.protocol + "//" + window.location.host;
       const apiUrl = `${baseUrl}/api/post`;
       await fetch(apiUrl, {

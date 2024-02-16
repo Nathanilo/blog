@@ -7,6 +7,7 @@ import SearchBar from "@/components/SearchBar/SearchBar";
 import PostCard from "@/components/PostCard/PostCard";
 import styles from "./Page.module.css";
 import { Post } from "@prisma/client";
+import Link from "next/link";
 
 function PostPage() {
   const [posts, setPosts] = useState([] as Post[]);
@@ -56,19 +57,23 @@ function PostPage() {
       ) : (
         <div>
           {ListView ? (
-            <ul>
+            <ul className={styles.defaultList}>
               {filteredPosts.map((post) => (
-                <li key={post.id}>
-                  <PostCard post={post} posts={posts} />
-                </li>
+                <Link href={`/postpage/?id=${post.id}`} key={post.id}>
+                  <li key={post.id}>
+                    <PostCard post={post} posts={posts} />
+                  </li>
+                </Link>
               ))}
             </ul>
           ) : (
-            <ul className={styles.postslist}>
+            <ul className={styles.GridList}>
               {filteredPosts.map((post) => (
-                <li key={post.id} className={styles.listItem}>
-                  <PostCard post={post} posts={posts} />
-                </li>
+                <Link href={`/postpage/?id=${post.id}`} key={post.id}>
+                  <li key={post.id}>
+                    <PostCard post={post} posts={posts} />
+                  </li>
+                </Link>
               ))}
             </ul>
           )}

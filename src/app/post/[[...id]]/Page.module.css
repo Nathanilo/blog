@@ -1,18 +1,50 @@
 .viewSearchContainer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 3rem;
-  margin-left: 1rem;
+  justify-content: flex-end;
+  padding: 3rem 1rem;
+  margin-left: 1.5rem;
 }
-
-
-.postslist {
+.viewSearchContainer button {
+  margin-right: 1rem;
+}
+.defaultList li {
+  cursor: pointer;
+}
+.defaultList a {
+  text-decoration: none;
+  color: #000000;
+}
+.GridList {
   display: flex;
 }
-
-.listItem {
-  width: 45%;;
+.GridList a {
+  width: 45%;
+  text-decoration: none;
+  color: #000000;
+}
+.GridList li {
   list-style: none;
+  cursor: pointer;
+}
+@media (max-width: 900px) {
+  .GridList {
+    flex-wrap: wrap;
+  }
+  .GridList a {
+    width: 50%;
+    text-decoration: none;
+    color: #000000;
+  }
 }
 
+@media (max-width: 600px) {
+  .viewSearchContainer {
+    flex-direction: column-reverse;
+  }
+
+  .viewSearchContainer button {
+    margin-top: 1rem;
+    margin-left: -1rem;
+    padding: 0;
+  }
+}

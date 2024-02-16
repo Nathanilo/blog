@@ -3,11 +3,11 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useEffect, useState } from "react";
-import Button from "@/components/Button/Button";
 import styles from "./Page.module.css";
 import { Post } from "@prisma/client";
+import Button from "@/components/Button/Button";
 
-function EditPage() {
+function Postpage() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [post, setPost] = useState({} as Post);
@@ -17,6 +17,7 @@ function EditPage() {
     const url = new URL(window.location.href);
 
     const id = url.searchParams.get("id");
+    console.log("id: ", id);
 
     const fetchData = async () => {
       try {
@@ -34,7 +35,6 @@ function EditPage() {
         setPost(data);
         setChecked(!checked);
       } catch (error: any) {
-        // setError("Error fetching data: " + error.message);
         console.log("error fetching data: ", error.message);
       }
     };
@@ -43,52 +43,45 @@ function EditPage() {
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const payload = { ...post, title, content };
-
     const baseUrl = window.location.protocol + "//" + window.location.host;
-    const apiUrl = `${baseUrl}/api/post/${post.id}`;
+    const apiUrl = `${baseUrl}/api/post`;
+
+    e.preventDefault();
     await fetch(apiUrl, {
-      method: "PUT",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({ title, content }),
     });
-    const postUpdated = window.confirm("Post updated successfully");
-    if (postUpdated) {
+    const postCreated = window.confirm("Post created successfully");
+    if (postCreated) {
       window.location.href = "/";
     }
   };
 
   return (
     <>
-      {checked ? (
-        <Skeleton />
-      ) : (
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <div>
-            <label htmlFor="title">Title:</label>
-            <input
-              type="text"
-              id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor="content">Content:</label>
-            <textarea
-              id="content"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-            />
-          </div>
-          <Button buttonText="Save Post" />
-        </form>
-      )}
+      <div className={styles.postPage}>
+        <h1>{title}</h1>
+        <p>{content}</p>
+        {checked ? (
+          <Skeleton />
+        ) : (
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div>
+              <textarea
+                id="content"
+                value=""
+                onChange={(e) => setContent(e.target.value)}
+              />
+            </div>
+            <Button buttonText="Comment" />
+          </form>
+        )}
+      </div>
     </>
   );
 }
 
-export default EditPage;
+export default Postpage;

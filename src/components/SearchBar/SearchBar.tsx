@@ -2,13 +2,9 @@ import { useState } from "react";
 import styles from "./SearchBar.module.css";
 import { Post } from "@prisma/client";
 
-
-
 interface SearchBarProps {
-  posts: Post[]
-  setFilteredPosts: React.Dispatch<
-    React.SetStateAction<Post[]>
-  >;
+  posts: Post[];
+  setFilteredPosts: React.Dispatch<React.SetStateAction<Post[]>>;
 }
 
 export default function SearchBar({ posts, setFilteredPosts }: SearchBarProps) {
@@ -31,7 +27,7 @@ export default function SearchBar({ posts, setFilteredPosts }: SearchBarProps) {
       <input
         className={styles.searchbar}
         type="search"
-        placeholder="Search for a post..."
+        placeholder="Search"
         value={searchTerm}
         onChange={(e) => handleSearch(e.target.value)}
       />
