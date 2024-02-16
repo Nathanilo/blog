@@ -1,5 +1,7 @@
 "use client";
 
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { useEffect, useState } from "react";
 import Button from "@/components/Button/Button";
 import styles from "./Page.module.css";
@@ -9,6 +11,7 @@ function EditPage() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [post, setPost] = useState({} as Post);
+  const [checked, setChecked] = useState(true);
 
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -28,6 +31,7 @@ function EditPage() {
         setTitle(data.title);
         setContent(data.content);
         setPost(data);
+        setChecked(!checked);
       } catch (error: any) {
         // setError("Error fetching data: " + error.message);
         console.log("error fetching data: ", error.message);
@@ -57,26 +61,32 @@ function EditPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <div>
-        <label htmlFor="title">Title:</label>
-        <input
-          type="text"
-          id="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="content">Content:</label>
-        <textarea
-          id="content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
-      </div>
-      <Button buttonText="Save Post" />
-    </form>
+    <>
+      {checked ? (
+        <Skeleton />
+      ) : (
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <div>
+            <label htmlFor="title">Title:</label>
+            <input
+              type="text"
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="content">Content:</label>
+            <textarea
+              id="content"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
+          </div>
+          <Button buttonText="Save Post" />
+        </form>
+      )}
+    </>
   );
 }
 

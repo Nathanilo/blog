@@ -1,5 +1,6 @@
 "use client";
-
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { useEffect, useState } from "react";
 import Button from "@/components/Button/Button";
 import SearchBar from "@/components/SearchBar/SearchBar";
@@ -11,6 +12,7 @@ function PostPage() {
   const [posts, setPosts] = useState([] as Post[]);
   const [ListView, setListView] = useState(true);
   const [filteredPosts, setFilteredPosts] = useState([] as Post[]);
+  const [checked, setChecked] = useState(true);
 
   const handleClick = () => {
     setListView((prev) => (prev === true ? false : true));
@@ -29,6 +31,7 @@ function PostPage() {
         const data = await response.json();
         setPosts(data);
         setFilteredPosts(data);
+        setChecked(!checked);
       } catch (error: any) {
         console.log("error fetching data: ", error.message);
       }
@@ -48,25 +51,29 @@ function PostPage() {
         </div>
         <SearchBar posts={posts} setFilteredPosts={setFilteredPosts} />
       </div>
-      <div>
-        {ListView ? (
-          <ul>
-            {filteredPosts.map((post) => (
-              <li key={post.id}>
-                <PostCard post={post} posts={posts} />
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <ul className={styles.postslist}>
-            {filteredPosts.map((post) => (
-              <li key={post.id} className={styles.listItem}>
-                <PostCard post={post} posts={posts} />
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      {checked ? (
+        <Skeleton />
+      ) : (
+        <div>
+          {ListView ? (
+            <ul>
+              {filteredPosts.map((post) => (
+                <li key={post.id}>
+                  <PostCard post={post} posts={posts} />
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <ul className={styles.postslist}>
+              {filteredPosts.map((post) => (
+                <li key={post.id} className={styles.listItem}>
+                  <PostCard post={post} posts={posts} />
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
     </>
   );
 }
