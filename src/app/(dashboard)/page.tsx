@@ -1,16 +1,16 @@
 "use client";
 
-// import { Post, postsData } from "../../data/post";
 import Link from "next/link";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import Button from "@/components/Button/Button";
 import styles from "./page.module.css";
 import ManagePostCard from "@/components/ManagePostCard/ManagePostCard";
+import { Post } from "@prisma/client";
 
 export default function Home() {
-  const [posts, setPosts] = useState([]);
-  const [filteredPosts, setFilteredPosts] = useState([]);
+  const [posts, setPosts] = useState([] as Post[]);
+  const [filteredPosts, setFilteredPosts] = useState([] as Post[]);
 
   useEffect(() => {
     const fetchData = async () => {

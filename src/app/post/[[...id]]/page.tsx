@@ -5,11 +5,12 @@ import Button from "@/components/Button/Button";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import PostCard from "@/components/PostCard/PostCard";
 import styles from "./Page.module.css";
+import { Post } from "@prisma/client";
 
 function PostPage() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState([] as Post[]);
   const [ListView, setListView] = useState(true);
-  const [filteredPosts, setFilteredPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([] as Post[]);
 
   const handleClick = () => {
     setListView((prev) => (prev === true ? false : true));
