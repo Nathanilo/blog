@@ -1,6 +1,6 @@
 ## Overview
 
-Blogverse is a web app for managing blogs. It was created for the Elevate Apps internship assessment. The blog has the following features:
+BlogVerse is a web app for managing blogs. It was created for the Elevate Apps internship assessment. The blog has the following features:
 
 - The ability to create, edit, and delete blog posts.
 - The ability to view blog posts in a list or a grid.
@@ -12,7 +12,7 @@ Blogverse is a web app for managing blogs. It was created for the Elevate Apps i
 
 ### Local Environment
 
-- Rename the .env.example to .env
+- Rename the `.env.example` to `.env`
 - Modify database connection string to include the correct parameters
 - Install app dependencies by executing `yarn install`
 - Start the app by executing `yarn run dev`
@@ -20,6 +20,22 @@ Blogverse is a web app for managing blogs. It was created for the Elevate Apps i
 
 ## Design
 
+
 Blog wireframes are available [here](https://excalidraw.com/#json=WvtTsbF-edKN6wOTcMTCU,SuRpTVFcRjr8HMjBCAGnpg)
 
-Visit Live web app at https://blog-fyztx1ebf-nathaniel-odions-projects.vercel.app
+Visit Live web app at https://blog-ge2rn5f4o-nathaniel-odions-projects.vercel.app
+
+
+## Features Implemented on BlogVerse V1
+
+The following features were implemented on the first version of BlogVerse:
+
+- The ability to create, edit, and delete blog posts.
+- The ability to view blog posts in a list or a grid.
+- The ability to search for blog posts.
+- The application is responsive and works on all major browsers.
+
+
+## Upcoming Feature
+
+-  The ability to comment on blog posts.

@@ -12,6 +12,7 @@ function Postpage() {
   const [content, setContent] = useState("");
   const [post, setPost] = useState({} as Post);
   const [checked, setChecked] = useState(true);
+  const [comment, setComment] = useState("");
 
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -43,21 +44,8 @@ function Postpage() {
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    const baseUrl = window.location.protocol + "//" + window.location.host;
-    const apiUrl = `${baseUrl}/api/post`;
-
     e.preventDefault();
-    await fetch(apiUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ title, content }),
-    });
-    const postCreated = window.confirm("Post created successfully");
-    if (postCreated) {
-      window.location.href = "/";
-    }
+    alert("Still working on this feature");
   };
 
   return (
@@ -71,9 +59,10 @@ function Postpage() {
           <form onSubmit={handleSubmit} className={styles.form}>
             <div>
               <textarea
-                id="content"
-                value=""
-                onChange={(e) => setContent(e.target.value)}
+                style={{ padding: "16px", fontSize: "16px" }}
+                id="comment"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
               />
             </div>
             <Button buttonText="Comment" />
