@@ -16,25 +16,24 @@ function PostPage() {
     setListView((prev) => (prev === true ? false : true));
   };
 
- useEffect(() => {
-   const fetchData = async () => {
-     try {
-       const response = await fetch("http://localhost:3000/api/post");
-       if (!response.ok) {
-         throw new Error("Network response was not ok");
-       }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/post");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
 
-       const data = await response.json();
-       setPosts(data);
-       setFilteredPosts(data);
-     } catch (error: any) {
-       // setError("Error fetching data: " + error.message);
-       console.log("error fetching data: ", error.message);
-     }
-   };
+        const data = await response.json();
+        setPosts(data);
+        setFilteredPosts(data);
+      } catch (error: any) {
+        console.log("error fetching data: ", error.message);
+      }
+    };
 
-   fetchData();
- }, []);
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -44,7 +43,6 @@ function PostPage() {
             buttonText={ListView ? "View in Grid" : "View in List"}
             handleClick={handleClick}
           />
-          {/* <Button buttonText="Grid view" /> */}
         </div>
         <SearchBar posts={posts} setFilteredPosts={setFilteredPosts} />
       </div>
@@ -53,10 +51,6 @@ function PostPage() {
           <ul>
             {filteredPosts.map((post) => (
               <li key={post.id}>
-                {/* <div>
-                {post.title}
-                <Link href={`/post/${post.id}`}>See more...</Link>
-              </div> */}
                 <PostCard post={post} posts={posts} />
               </li>
             ))}

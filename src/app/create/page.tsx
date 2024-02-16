@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Button from "@/components/Button/Button";
-import styles from "./page.module.css";
+import styles from "./Page.module.css";
 
 function CreatePage() {
   const [title, setTitle] = useState("");
